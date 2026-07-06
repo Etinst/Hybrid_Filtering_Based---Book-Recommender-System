@@ -1,0 +1,114 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{array}
+
+\title{Hybrid Filtering Based Book Recommender System Improvement Report}
+\author{Darshan Nitin Barhate}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+This project is a Book Recommender System made using Python and Streamlit. It recommends books by using information from the Book-Crossing dataset. The main idea is to help users find books that match a title or author they like.
+
+The improved version keeps the project simple, but makes it easier to run, easier to understand, and better documented.
+
+\section{Project Objective}
+The objective of this project is to build a simple web app that can:
+\begin{itemize}[leftmargin=*]
+    \item show popular books,
+    \item recommend books based on title or author search,
+    \item rank books using rating quality and rating count,
+    \item show a small dataset summary,
+    \item explain missing dataset files clearly.
+\end{itemize}
+
+\section{Technologies Used}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{9cm}|}
+\hline
+\textbf{Technology} & \textbf{Use in the Project} \\
+\hline
+Python & Main programming language used for the app. \\
+\hline
+Streamlit & Used to create the web interface. \\
+\hline
+Pandas & Used to read CSV files and calculate book ratings. \\
+\hline
+Book-Crossing Dataset & Provides books, ratings, and users data. \\
+\hline
+Jupyter Notebook & Used for study, testing, and recommender experiments. \\
+\hline
+\end{tabular}
+
+\section{Dataset Files}
+The project uses three CSV files:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{Books.csv}: contains book title, author, publisher, year, and image URL.
+    \item \texttt{Ratings.csv}: contains ratings given by users.
+    \item \texttt{Users.csv}: contains user details.
+\end{itemize}
+
+These files should be placed inside an \texttt{archive} folder:
+\begin{verbatim}
+archive/
+  Books.csv
+  Ratings.csv
+  Users.csv
+\end{verbatim}
+
+\section{Improvements Made}
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Clear missing file handling:} The app now shows a useful message if the dataset files are not present.
+    \item \textbf{Cleaner data loading:} Duplicate ISBN values are removed and rating values are converted into numeric form.
+    \item \textbf{Hybrid score:} Recommendations now use both average rating and rating count.
+    \item \textbf{Useful sidebar controls:} The user can change minimum rating count and hide or show book covers.
+    \item \textbf{Dataset summary page:} A new page shows total books, ratings, users, and top authors.
+    \item \textbf{Better project setup:} A \texttt{requirements.txt} file was added for installing packages.
+    \item \textbf{Better documentation:} A README and this LaTeX report were added.
+    \item \textbf{Cleaner project files:} A \texttt{.gitignore} file was added to avoid uploading dataset and cache files.
+\end{enumerate}
+
+\section{How Recommendation Works}
+First, the app calculates two values for every book:
+\begin{itemize}[leftmargin=*]
+    \item average rating,
+    \item number of ratings.
+\end{itemize}
+
+When the user searches for a book title or author, the app finds matching books. Then it ranks those books using a simple hybrid score:
+\begin{verbatim}
+hybrid_score = average_rating * 0.7 + normalized_rating_count * 3
+\end{verbatim}
+
+This score gives importance to both book quality and popularity. A book with a high rating and many ratings will usually appear higher.
+
+\section{Pages in the App}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Home:} Shows the project idea and featured popular books.
+    \item \textbf{Recommend:} Lets the user search by title or author.
+    \item \textbf{Popular Books:} Shows top-rated books with enough ratings.
+    \item \textbf{Dataset Summary:} Shows dataset counts and top authors.
+    \item \textbf{Settings:} Explains sidebar controls.
+\end{itemize}
+
+\section{How to Run}
+Install the required packages:
+\begin{verbatim}
+pip install -r requirements.txt
+\end{verbatim}
+
+Run the Streamlit app:
+\begin{verbatim}
+streamlit run app.py
+\end{verbatim}
+
+\section{Testing and Validation}
+The Python file was checked for syntax errors. The live Streamlit app requires the dataset files to be placed inside the \texttt{archive} folder.
+
+\section{Conclusion}
+The improved project is more complete and easier to understand. It now has better error handling, a simple hybrid ranking method, useful filters, a dataset summary page, and clear documentation. The project is suitable for a student-level machine learning or data science demonstration.
+
+\end{document}
